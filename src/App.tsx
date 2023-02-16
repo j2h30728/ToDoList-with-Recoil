@@ -1,7 +1,7 @@
-import React from "react";
+import ToDoList from "./components/ToDoList";
 
 function App() {
-  return <div className="App">inital</div>;
+  return <ToDoList />;
 }
 
 export default App;
