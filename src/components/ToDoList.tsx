@@ -11,8 +11,8 @@ export default function ToDoList() {
     <div className="App">
       <h1>Todo</h1>
       <hr />
-      <CreateCategory />
       <Category />
+      <CreateCategory />
       <hr />
       <CreateToDo />
       <div>

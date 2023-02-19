@@ -16,7 +16,7 @@ export default function CreateToDo() {
   } = useForm<IForm>();
   const handleOnvalid = ({ toDo }: IForm) => {
     setTodos(oldTodos => [
-      { text: toDo, id: Date.now(), category: category },
+      { text: toDo, id: Date.now(), category },
       ...oldTodos,
     ]);
     setValue("toDo", "");

@@ -1,15 +1,17 @@
-import { Category, ITodo, todosState } from "../atoms";
-import { useSetRecoilState } from "recoil";
+import { categoriesState, ITodo, todosState, categoryState } from "../atoms";
+import { useSetRecoilState, useRecoilValue } from "recoil";
 
-export default function ToDo({ text, id, category }: ITodo) {
+export default function ToDo({ text, id }: ITodo) {
   const setTodo = useSetRecoilState(todosState);
+  const categories = useRecoilValue(categoriesState);
+  const category = useRecoilValue(categoryState);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const {
       currentTarget: { name },
     } = event;
     setTodo(oldToDos => {
       const targetIdx = oldToDos.findIndex(toDo => toDo.id === id);
-      const newToDo = { text, id, category: name as Category };
+      const newToDo = { text, id, category: name };
       return [
         ...oldToDos.slice(0, targetIdx),
         newToDo,
@@ -17,23 +19,25 @@ export default function ToDo({ text, id, category }: ITodo) {
       ];
     });
   };
+  const handleDelete = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const deleteTodo =
+      event?.currentTarget.parentElement?.children[1].textContent;
+    setTodo(oldToDos => {
+      return [...oldToDos].filter(toDo => toDo.text !== deleteTodo);
+    });
+  };
+
   return (
     <div>
+      <button onClick={handleDelete}>❎</button>
       <span>{text}</span>
-      {category !== Category.TO_DO && (
-        <button name={Category.TO_DO} onClick={handleClick}>
-          TO_DO
-        </button>
-      )}
-      {category !== Category.DOING && (
-        <button name={Category.DOING} onClick={handleClick}>
-          DOING
-        </button>
-      )}
-      {category !== Category.DONE && (
-        <button name={Category.DONE} onClick={handleClick}>
-          DONE
-        </button>
+      {Object.keys(categories).map(
+        cate =>
+          cate !== category && (
+            <button name={cate} onClick={handleClick} key={cate}>
+              {cate}
+            </button>
+          )
       )}
     </div>
   );
