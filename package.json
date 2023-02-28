@@ -14,9 +14,11 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.1",
+    "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
     "recoil": "^0.7.6",
     "recoil-persist": "^4.2.0",
+    "styled-components": "^5.3.6",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
@@ -46,5 +48,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://j2h30728.github.io/ToDoList-with-Recoil"
+  "homepage": "https://j2h30728.github.io/ToDoList-with-Recoil",
+  "devDependencies": {
+    "@types/styled-components": "^5.1.26"
+  }
 }

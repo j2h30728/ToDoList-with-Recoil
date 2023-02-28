@@ -1,7 +1,15 @@
-import ToDoList from "./components/ToDoList";
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "./styles/GlobalStyle";
+import { light } from "./styles/theme";
+import TodoLsit from "./components/ToDoList";
 
 function App() {
-  return <ToDoList />;
+  return (
+    <ThemeProvider theme={light}>
+      <GlobalStyle />
+      <TodoLsit />
+    </ThemeProvider>
+  );
 }
 
 export default App;

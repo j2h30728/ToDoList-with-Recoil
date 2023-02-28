@@ -1,25 +1,28 @@
-import Category from "./Category";
-import CreateToDo from "./CreateToDo";
-import ToDo from "./ToDo";
 import { useRecoilValue } from "recoil";
-import { toDoSelector } from "../atoms";
-import CreateCategory from "./CreateCategory";
+import CreateCategory from "./category/CreateCategory";
+import { todoSelector } from "../atoms";
+import SelectCategory from "./category/SelectCategory";
+import CreateTodo from "./todo/CreateToDo";
+import Todo from "./todo/ToDo";
 
-export default function ToDoList() {
-  const todos = useRecoilValue(toDoSelector);
+export default function TodoLsit() {
+  const todos = useRecoilValue(todoSelector);
   return (
-    <div className="App">
-      <h1>Todo</h1>
+    <div>
+      <h1>Todo List</h1>
       <hr />
-      <Category />
+      <h2>할 일 추가</h2>
+      <CreateTodo />
+      <hr />
+      <h2>카테고리 추가</h2>
       <CreateCategory />
       <hr />
-      <CreateToDo />
-      <div>
-        {todos.map(toDo => (
-          <ToDo key={toDo.id} {...toDo} />
+      <SelectCategory />
+      <ul>
+        {todos.map(todo => (
+          <Todo key={todo.id} {...todo} />
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
