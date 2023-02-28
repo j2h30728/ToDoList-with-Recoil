@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/ToDoList-with-Recoil/static/js/main.c51f97d9.js",
+    "main.js": "/ToDoList-with-Recoil/static/js/main.d50960b9.js",
     "index.html": "/ToDoList-with-Recoil/index.html",
-    "main.c51f97d9.js.map": "/ToDoList-with-Recoil/static/js/main.c51f97d9.js.map"
+    "main.d50960b9.js.map": "/ToDoList-with-Recoil/static/js/main.d50960b9.js.map"
   },
   "entrypoints": [
-    "static/js/main.c51f97d9.js"
+    "static/js/main.d50960b9.js"
   ]
 }
