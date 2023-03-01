@@ -1,30 +1,28 @@
 import { useForm } from "react-hook-form";
 import { categoriesState } from "../../atoms";
 import { useSetRecoilState } from "recoil";
+import styled from "styled-components";
+import { Form, Title } from "../../styles/common";
 interface Category {
   category: string;
 }
 export default function CreateCategory() {
   const setCategories = useSetRecoilState(categoriesState);
-  const {
-    register,
-    setValue,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Category>();
+  const { register, setValue, handleSubmit } = useForm<Category>();
   const handleCategory = ({ category }: Category) => {
-    setCategories(oldCategories => ({ [category]: [], ...oldCategories }));
+    setCategories(oldCategories => ({ ...oldCategories, [category]: [] }));
     setValue("category", "");
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit(handleCategory)}>
+    <>
+      <Title>Category</Title>
+      <Form onSubmit={handleSubmit(handleCategory)}>
         <input
           {...register("category", { required: "Please write a category" })}
+          placeholder="Add a category"
         />
-        <p>{errors?.category?.message}</p>
-        <input type="submit" value="Add a Category" />
-      </form>
-    </div>
+        <input type="submit" value="+" />
+      </Form>
+    </>
   );
 }

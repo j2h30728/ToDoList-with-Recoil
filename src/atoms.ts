@@ -10,7 +10,7 @@ export interface ITodo {
 const { persistAtom } = recoilPersist();
 export const todoState = atom<ITodo[]>({
   key: "todo",
-  default: [],
+  default: [{ text: "계획한 일을 추가 해보아요!", id: 0, category: "⏱TO_DO" }],
   effects_UNSTABLE: [persistAtom],
 });
 
@@ -19,13 +19,13 @@ interface ICategory {
 }
 export const categoriesState = atom<ICategory>({
   key: "categories",
-  default: { TO_DO: [], DONE: [] },
+  default: { "⏱TO_DO": [], "⛹️‍♂️DOING": [], "🎉DONE": [] },
   effects_UNSTABLE: [persistAtom],
 });
 
 export const categoryState = atom({
   key: "category",
-  default: "TO_DO",
+  default: "⏱TO_DO",
 });
 
 export const todoSelector = selector({
