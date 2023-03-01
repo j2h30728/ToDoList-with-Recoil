@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useSetRecoilState, useRecoilValue } from "recoil";
-import { categoryState, todoState } from "../../atoms";
+import { categoryState, todoState } from "../../atoms/atoms";
 import { Form, Title } from "../../styles/common";
 
 interface Todo {

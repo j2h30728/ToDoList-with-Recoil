@@ -1,13 +1,10 @@
-import { useRecoilValue } from "recoil";
-import CreateCategory from "./category/CreateCategory";
-import { todoSelector } from "../atoms";
-import CreateTodo from "./todo/CreateToDo";
-import Todo from "./todo/ToDo";
+import CreateCategory from "../components/category/CreateCategory";
+import CreateTodo from "../components/todo/CreateTodo";
 import styled from "styled-components";
-import CategoryList from "./category/CategoryList";
+import CategoryList from "../components/category/CategoryList";
+import TodoList from "../components/todo/TodoList";
 
-export default function TodoLsit() {
-  const todos = useRecoilValue(todoSelector);
+export default function Home() {
   return (
     <Container>
       <CategoryWrapper>
@@ -16,18 +13,13 @@ export default function TodoLsit() {
       </CategoryWrapper>
       <TodoWrapper>
         <CreateTodo />
-        <ul>
-          {todos.map(todo => (
-            <Todo key={todo.id} {...todo} />
-          ))}
-        </ul>
+        <TodoList />
       </TodoWrapper>
     </Container>
   );
 }
 
 const Container = styled.div`
-  /* border: 1px solid black; */
   width: 80%;
   max-width: 800px;
   margin: 0 auto;

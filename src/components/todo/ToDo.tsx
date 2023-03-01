@@ -1,7 +1,7 @@
-import { categoriesState, ITodo, todoState } from "../../atoms";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { DeleteButton } from "../../styles/common";
 import styled from "styled-components";
+import { categoriesState, ITodo, todoState } from "../../atoms/atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import RemoveButton from "./RemoveButton";
 
 export default function Todo({ text, id, category: currCategory }: ITodo) {
   const setTodos = useSetRecoilState(todoState);
@@ -18,14 +18,11 @@ export default function Todo({ text, id, category: currCategory }: ITodo) {
       );
     });
   };
-  const handleRemove = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const todoText = event.currentTarget.parentNode?.children[1].textContent;
-    setTodos(oldTodos => oldTodos.filter(todo => todo.text !== todoText));
-  };
+
   return (
     <Container>
       <div>
-        <DeleteButton onClick={handleRemove}>✕</DeleteButton>
+        <RemoveButton />
         <Content>{text}</Content>
       </div>
       <div>

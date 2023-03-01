@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
-import { categoriesState } from "../../atoms";
+import { categoriesState } from "../../atoms/atoms";
 import { useSetRecoilState } from "recoil";
-import styled from "styled-components";
 import { Form, Title } from "../../styles/common";
 interface Category {
   category: string;

@@ -30,7 +30,7 @@ export const Title = styled.h2`
   font-weight: 600;
   color: ${props => props.theme.accentColor};
 `;
-export const DeleteButton = styled.button`
+export const XButton = styled.button`
   background-color: transparent;
   border-radius: 50%;
   height: 100%;

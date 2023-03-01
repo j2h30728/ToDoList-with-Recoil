@@ -1,36 +1,20 @@
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { categoriesState, categoryState } from "../../atoms";
-import { DeleteButton } from "../../styles/common";
+import { categoriesState } from "../../atoms/atoms";
+import Category from "./Category";
+import RemoveButton from "./RemoveButton";
+
 export default function CategoryList() {
-  const [cateogries, setCategories] = useRecoilState(categoriesState);
-  const [currCategory, setCurrCategory] = useRecoilState(categoryState);
-  const handleCategory = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.currentTarget.textContent &&
-      setCurrCategory(event.currentTarget.textContent);
-  };
-  const handleRemove = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const categoryText =
-      event.currentTarget.parentNode?.children[0].textContent;
-    setCategories(oldCategories => {
-      const newCategory = { ...oldCategories };
-      delete newCategory[`${categoryText}`];
-      return newCategory;
-    });
-  };
+  const cateogries = useRecoilValue(categoriesState);
   return (
     <Container>
       {Object.keys(cateogries).map(category => (
         <CategoryWrapper key={category}>
-          <Category
-            isActive={currCategory === category}
-            onClick={handleCategory}>
-            <span>{category}</span>
-          </Category>
+          <Category category={category} />
           {category !== "⏱TO_DO" &&
           category !== "🎉DONE" &&
           category !== "⛹️‍♂️DOING" ? (
-            <DeleteButton onClick={handleRemove}>✕</DeleteButton>
+            <RemoveButton />
           ) : undefined}
         </CategoryWrapper>
       ))}
@@ -48,19 +32,6 @@ const Container = styled.div`
 `;
 const CategoryWrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-`;
-const Category = styled.button<{ isActive: boolean }>`
-  width: 100%;
-  background-color: ${props =>
-    props.isActive ? props.theme.accentColor : props.theme.baseColor};
-  color: ${props => (props.isActive ? "white" : props.theme.textColor)};
-  margin: 1px;
-  padding: 2px;
-  border-radius: 2px;
-  border: none;
-  cursor: pointer;
   display: flex;
   justify-content: space-between;
 `;
